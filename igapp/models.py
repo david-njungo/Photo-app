@@ -45,7 +45,7 @@ class Comment(models.Model):
     active = models.BooleanField(default=False)
     image = models.ForeignKey('Image',on_delete=models.CASCADE)
 
-    def save_editor(self):
+    def save_comment(self):
         self.save()
 
     class Meta:
@@ -57,3 +57,17 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.author
+
+class Likes(models.Model):
+    image = models.ForeignKey(Picture, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def save_likes(self):
+        self.save()
+
+    def delete_like(self):
+        self.delete()
+
+    def count_likes(self):
+        likes = self.likes.count()
+        return likes
