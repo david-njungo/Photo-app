@@ -17,6 +17,11 @@ class Image(models.Model):
     def get_image(cls):
         images = cls.objects.all()
         return images  
+    @classmethod
+    def search_by_name(cls,search_term):
+        images = cls.objects.filter(image_name__icontains=search_term)
+        return images
+
     
 
 class Profile(models.Model):
