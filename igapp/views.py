@@ -33,3 +33,24 @@ def profile_page(request):
     else:
         form = ProfileForm()
     return render(request, 'profile.html', {"form": form})
+
+@login_required(login_url='/accounts/login/') 
+def comment(request,image_id):
+        current_user=request.user
+        image =Image.objects.get(id=image_id)
+        profile = User.objects.get(username=current_user.username)
+        comments = Comment.objects.all()
+        
+        if request.method == 'POST':
+                form = CommentForm(request.POST, request.FILES)
+                if form.is_valid():
+                        comment = form.save(commit=False)
+                        comment.image = image
+                        comment.user = request.user
+                        comment.save()
+            
+                       
+                return redirect('home')
+        else:
+                form = CommentForm()
+        return render(request, 'comment.html',locals())

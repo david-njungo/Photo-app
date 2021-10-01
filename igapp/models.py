@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Image(models.Model):
     image = models.ImageField(upload_to = 'images/')
@@ -36,8 +36,6 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
-    
-
 class Comment(models.Model):
     author = models.CharField(max_length=80)
     body = models.TextField()
@@ -59,7 +57,7 @@ class Comment(models.Model):
         return self.author
 
 class Likes(models.Model):
-    image = models.ForeignKey(Picture, on_delete=models.CASCADE)
+    image = models.ForeignKey('Image', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save_likes(self):
