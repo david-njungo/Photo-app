@@ -50,6 +50,10 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['created_on']
+    
+
+    def delete_comment(self):
+        self.delete()
 
     def __str__(self):
         return self.author
