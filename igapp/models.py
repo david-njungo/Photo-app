@@ -1,0 +1,47 @@
+from django.db import models
+
+# Create your models here.
+class Image(models.Model):
+    image = models.ImageField(upload_to = 'images/')
+    image_name = models.CharField(max_length =30)
+    image_caption = models.CharField(max_length =30) 
+
+    def __str__(self):
+        return self.image_name
+    class Meta:
+        ordering = ['image_name'] 
+
+    def save_image(self):
+        self.save()
+    @classmethod
+    def get_image(cls):
+        images = cls.objects.all()
+        return images  
+    
+
+class Profile(models.Model):
+    prof_photo = models.ImageField(upload_to = 'images/')
+    bio = models.CharField(max_length =30)
+    image = models.ForeignKey('Image',on_delete=models.CASCADE) 
+
+    def __str__(self):
+        return self.bio
+
+    def save_profile(self):
+        self.save()
+
+class Comment(models.Model):
+    author = models.CharField(max_length=80)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+    image = models.ForeignKey('Image',on_delete=models.CASCADE)
+
+    def save_editor(self):
+        self.save()
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.author

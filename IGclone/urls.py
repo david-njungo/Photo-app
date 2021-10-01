@@ -19,6 +19,6 @@ from django.conf.urls import include,url
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url('',include('IG_app.urls')),
-    url(r'^accounts/', include('registration.backends.simple.urls'))
+    url('',include('igapp.urls')),
+    url(r'^accounts/',include('django_registration.backends.one_step.urls'))
 ]

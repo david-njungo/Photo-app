@@ -1,0 +1,13 @@
+{%extends 'base.html' %}
+
+{% block content %}
+{% for image in images %}
+<div class="card col-4" style="width: 18rem;">
+    <img src="{{image.image}}" class="img-responsive"  class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{image.image_name}}</h5> 
+    </div>
+  </div>
+{% endfor %}
+<h1>welcome home</h1>
+{% endblock %}
