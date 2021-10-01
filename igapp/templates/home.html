@@ -1,6 +1,13 @@
 {%extends 'base.html' %}
 
 {% block content %}
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <h1>welcome To My Instagram App</h1>
+  </div>
+  <div class="col-3"></div>
+</div>
 {% for image in images %}
 <div class="card col-4" style="width: 18rem;">
     <img src="{{image.image}}" class="img-responsive"  class="card-img-top" alt="...">
@@ -9,5 +16,5 @@
     </div>
   </div>
 {% endfor %}
-<h1>welcome home</h1>
+
 {% endblock %}

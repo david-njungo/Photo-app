@@ -28,12 +28,15 @@ class Profile(models.Model):
     prof_photo = models.ImageField(upload_to = 'images/')
     bio = models.CharField(max_length =30)
     image = models.ForeignKey('Image',on_delete=models.CASCADE) 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.bio
-
+        return self.user.username
+ 
     def save_profile(self):
         self.save()
+
+    
 
 class Comment(models.Model):
     author = models.CharField(max_length=80)
