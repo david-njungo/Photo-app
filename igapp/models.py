@@ -22,8 +22,6 @@ class Image(models.Model):
         images = cls.objects.filter(image_name__icontains=search_term)
         return images
 
-    
-
 class Profile(models.Model):
     prof_photo = models.ImageField(upload_to = 'images/')
     bio = models.CharField(max_length =30)
