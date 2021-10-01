@@ -1,13 +1,30 @@
 {%extends 'base.html' %}
 
 {% block content %}
-<div class="row">
+<style>
+  .home{
+      background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80');
+      height:500px;
+      background-repeat: no-repeat;
+      background-size:100% 100%;
+  }
+  .intro{
+            font-size: 45px;
+            font-weight: 600; 
+}
+</style>
+<div class="row home">
   <div class="col-3"></div>
-  <div class="col-6">
-    <h1>welcome To My Instagram App</h1>
+  <div class="col-6 intro">
+    <h1 class="text-center text-light pt-5 fw-bold">welcome To My Instagram App</h1>
+    <p class="pt-5 pb-3 text-primary">
+      Enjoy the latest blogs and share your 
+      experiences with others.
+    </p>
   </div>
   <div class="col-3"></div>
 </div>
+<h1 class="text-center text-dark fw-bold">View images</h1>
 {% for image in images %}
 <div class="card col-4" style="width: 18rem;">
     <img src="{{image.image}}" class="img-responsive"  class="card-img-top" alt="...">
@@ -16,9 +33,8 @@
     </div>
   </div>
 {% endfor %}
-<div class="card-footer">
-  <h4>Comments:<span><a href="{% url 'comment' image.id %}" class="btn btn-sm btn-success"
-        style="float:right">Add Comment</a></span></h4>
+<!-- <div class="card-footer">
+  <h4>Comments:</h4>
   <div class="card-body ">
     {% for comment in comments %}
     {% if comment.image_id == image.id%}
@@ -30,7 +46,7 @@
     {% endif %}
     {% endfor %}
   </div>
-</div>
+</div> -->
 
 
 {% endblock %}
