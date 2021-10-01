@@ -17,3 +17,6 @@ class CommentTestClass(TestCase):
         self.comm.save_comment()
         comments = Comment.objects.all()
         self.assertTrue(len(comments) > 0)
+
+    def tearDown(self):
+        Comment.objects.all().delete() 
