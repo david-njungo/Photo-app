@@ -10,4 +10,10 @@ class CommentTestClass(TestCase):
 
     # Testing  instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.comm,Image))
+        self.assertTrue(isinstance(self.comm,Comment))
+
+         # Testing Save Method
+    def test_save_method(self):
+        self.comm.save_comment()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments) > 0)
